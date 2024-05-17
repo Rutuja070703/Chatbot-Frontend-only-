@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driving Class Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #222; /* Dark background color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .chat-container {
+            width: 400px; /* Increased width */
+            height: 500px; /* Increased height */
+            background-color: #333; /* Darker background color */
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Increased shadow */
+            overflow: hidden;
+            color: #fff; /* Text color */
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            border-bottom: 1px solid #555; /* Border color */
+        }
+        .chat-body {
+            padding: 15px;
+            flex: 1; /* Fill remaining space */
+            overflow-y: scroll;
+        }
+        .chat-input {
+            width: calc(100% - 30px);
+            padding: 15px;
+            border: none;
+            border-top: 1px solid #555; /* Border color */
+            outline: none;
+            background-color: #444; /* Input background color */
+            color: #fff; /* Input text color */
+            border-radius: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">Chatbot</div>
+        <div class="chat-body" id="chat-body">
+            <p>Welcome to our driving class! How can I assist you today?</p>
+            <p>1. Book an appointment</p>
+            <p>2. Cancel an appointment</p>
+            <p>3. About instructors</p>
+            <p>4. Pricing details</p>
+            <p>5. Exit</p>
+        </div>
+        <input type="text" class="chat-input " id="user-input" placeholder="Type your message...">
+    </div>
+
+    <script>
+        const chatBody = document.getElementById('chat-body');
+        const userInput = document.getElementById('user-input');
+
+        function sendMessage(message) {
+            const chatMessage = document.createElement('p');
+            chatMessage.textContent = message;
+            chatBody.appendChild(chatMessage);
+        }
+
+        function processUserInput() {
+            const userInputText = userInput.value.trim().toLowerCase();
+
+            if (userInputText.includes('book') || userInputText.includes('appointment')) {
+                sendMessage('Sure! Let\'s book your appointment. Please fill out the form.');
+
+                setTimeout(() => {
+                    window.location.href = 'appointment.html';
+                }, 2000); // Redirect to appointment page after 2 seconds
+            } else if (userInputText.includes('cancel')) {
+                sendMessage('To cancel an appointment, please fill out this form,you would be contacted shortly after ,to confirm the cancellation ');
+                setTimeout(() => {
+                    window.location.href = 'cancel.html';
+                }, 2000);
+            } else if (userInputText.includes('about instructors')) {
+                sendMessage('Our instructors are highly trained professionals with years of experience.');
+            } else if (userInputText.includes('pricing') || userInputText.includes('information')) {
+                sendMessage('For pricing information, please visit our website or contact us.');
+            } else if (userInputText === 'exit') {
+                sendMessage('Thank you for contacting us. Have a great day!');
+                userInput.disabled = true;
+            }else if  (userInputText.includes('hi','hello','hey','hiya')){
+                sendMessage('hey there! welcome')
+            }
+            else {
+                sendMessage('I\'m sorry, I didn\'t understand that. Please choose from the menu.');
+            }
+
+
+
+            userInput.value = '';
+        }
+
+        userInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                processUserInput();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancel Appointment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #222; /* Dark background color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            width: 300px;
+            background-color: #333; /* Darker background color */
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Increased shadow */
+            padding: 20px;
+            color: #fff; /* Text color */
+        }
+        .form-input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 15px; /* Increased padding */
+            box-sizing: border-box;
+            background-color: #444; /* Input background color */
+            color: #fff; /* Input text color */
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+        .form-input::placeholder {
+            color: #bbb; /* Placeholder text color */
+        }
+        .form-submit {
+            width: 100%;
+            padding: 15px; /* Increased padding */
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .form-submit:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2 style="text-align: center;">Cancel Appointment</h2>
+        <form id="cancel-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" class="form-input" placeholder="Enter your name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" class="form-input" placeholder="Enter your phone number" required>
+
+            <label for="appointment-id">Appointment ID:</label>
+            <input type="text" id="appointment-id" class="form-input" placeholder="Enter your appointment ID" required>
+
+            <button type="submit" class="form-submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('cancel-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const appointmentId = document.getElementById('appointment-id').value;
+
+            // Here you can implement logic to handle the appointment cancellation
+            // For demonstration purposes, let's just show an alert with the cancellation confirmation
+            alert('Your appointment with ID ' + appointmentId + ' has been cancelled.');
+
+            // Redirect back to the chatbot page after cancelling appointment
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000); // Redirect after 2 seconds
+        });
+    </script>
+</body>
+</html>
